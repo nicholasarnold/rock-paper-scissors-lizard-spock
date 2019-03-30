@@ -1,10 +1,10 @@
 // Get elements from the DOM
-const rock = document.getElementById('rock');
-const paper = document.getElementById('paper');
-const scissors = document.getElementById('scissors');
-const lizard = document.getElementById('lizard');
-const spock = document.getElementById('spock');
-const results = document.getElementById('results');
+const rockButton = document.getElementById('rock-button');
+const paperButton = document.getElementById('paper-button');
+const scissorsButton = document.getElementById('scissors-button');
+const lizardButton = document.getElementById('lizard-button');
+const spockButton = document.getElementById('spock-button');
+const notificationCard = document.getElementById('notification-card');
 const playerScore = document.getElementById('scoreboard-player-score');
 const computerScore = document.getElementById('scoreboard-computer-score');
 const ties = document.getElementById('scoreboard-ties');
@@ -24,43 +24,47 @@ const getComputerChoice = () => {
   return optionsArray[Math.floor(Math.random() * optionsArray.length)];
 }
 
-const updateScoreboard = score => {
+const determineResult = (playerChoice, computerChoice) => {
+  return (playerChoice === computerChoice) ? 'tie'
+    : (options[playerChoice].beats.includes(computerChoice)) ? 'player wins'
+    : (options[computerChoice].beats.includes(playerChoice)) ? 'computer wins'
+    : 'undetermined';
+}
+
+const displayNotification = (notification, materializeColor) => {
+  notificationCard.classList.remove('red', 'green', 'white');
+  notificationCard.classList.add('card-panel', 'lighten-4', materializeColor);
+  notificationCard.innerHTML = notification;
+}
+
+const increaseScoreByOne = score => {
   let value = Number(score.innerHTML);
   value++;
   score.innerHTML = value;
 }
 
-const determineAndDisplayResult = (playerChoice, computerChoice) => {
-  let result;
-  results.classList.add('card-panel', 'lighten-4');
-  if (playerChoice === computerChoice) {
-    result = `Both you and the computer picked ${playerChoice}; the result is a tie. <i class="far fa-meh"></i>`;
-    results.classList.remove('green', 'red');
-    updateScoreboard(ties);
-  } else if (options[playerChoice].beats.includes(computerChoice)) {
-    result = `You picked ${playerChoice}. The computer picked ${computerChoice}. You win! <i class="far fa-smile"></i>`;
-    results.classList.remove('red');
-    results.classList.add('green');
-    updateScoreboard(playerScore);
-  } else if (options[computerChoice].beats.includes(playerChoice)) {
-    result = `You picked ${playerChoice}. The computer picked ${computerChoice}. The computer wins. <i class="far fa-frown"></i>`;
-    results.classList.remove('green');
-    results.classList.add('red');
-    updateScoreboard(computerScore);
-  } else {
-    result = `We couldn't determine the winner of this round. Please try again.`;
+const play = (playerChoice, computerChoice) => {
+  switch (determineResult(playerChoice, computerChoice)) {
+    case 'tie':
+      displayNotification(`Both you and the computer picked ${playerChoice}; the result is a tie. <i class="far fa-meh"></i>`, 'white');
+      increaseScoreByOne(ties);
+      break;
+    case 'player wins':
+      displayNotification(`You picked ${playerChoice}. The computer picked ${computerChoice}. You win! <i class="far fa-smile"></i>`, 'green');
+      increaseScoreByOne(playerScore);
+      break;
+    case 'computer wins':
+      displayNotification(`You picked ${playerChoice}. The computer picked ${computerChoice}. The computer wins. <i class="far fa-frown"></i>`, 'red');
+      increaseScoreByOne(computerScore);
+      break;
+    default:
+      displayNotification(`We couldn't determine the winner of this round. Please try again.`, 'white');
   }
-  results.innerHTML = result;
-}
-
-const play = playerChoice => {
-  const computerChoice = getComputerChoice();
-  determineAndDisplayResult(playerChoice, computerChoice);
 }
 
 // Event Listeners
-rock.onclick = () => play('rock');
-paper.onclick = () => play('paper');
-scissors.onclick = () => play('scissors');
-lizard.onclick = () => play('lizard');
-spock.onclick = () => play('spock');
+rockButton.onclick = () => play('rock', getComputerChoice());
+paperButton.onclick = () => play('paper', getComputerChoice());
+scissorsButton.onclick = () => play('scissors', getComputerChoice());
+lizardButton.onclick = () => play('lizard', getComputerChoice());
+spockButton.onclick = () => play('spock', getComputerChoice());

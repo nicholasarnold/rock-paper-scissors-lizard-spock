@@ -4,9 +4,9 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <link rel="stylesheet" href="./style.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+  <link rel="icon" href="./favicon.ico" type="image/png">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
   <title>Rock, Paper, Scissors, Lizard, Spock</title>
 </head>
@@ -16,20 +16,23 @@
       <div class="header section">
         <h1>Rock, Paper, Scissors, Lizard, Spock</h1>
       </div>
+      <div class="row center-align">
+        <img src="RPSSL.gif" title="How to play Rock, Paper, Scissors, Lizard, Spock" alt="How to play Rock, Paper, Scissors, Lizard, Spock">
+      </div>
       <div class="row">
         <p>To play, simply click or tap an option!</p>
       </div>
     </header>
     <main>
       <div class="options row">
-        <div class="col"><a id="rock" class="waves-effect waves-light btn orange darken-4">Rock <i class="fas fa-hand-rock"></i></a></div>
-        <div class="col"><a id="paper" class="waves-effect waves-light btn orange darken-3">Paper <i class="fas fa-hand-paper"></i></a></div>
-        <div class="col"><a id="scissors" class="waves-effect waves-light btn orange darken-2">Scissors <i class="fas fa-hand-scissors"></i></a></div>
-        <div class="col"><a id="lizard" class="waves-effect waves-light btn orange darken-1">Lizard <i class="fas fa-hand-lizard"></i></a></div>
-        <div class="col"><a id="spock" class="waves-effect waves-light btn orange">Spock <i class="fas fa-hand-spock"></i></a></div>
+        <div class="col"><a id="rock-button" class="waves-effect waves-light btn orange darken-4">Rock <i class="fas fa-hand-rock"></i></a></div>
+        <div class="col"><a id="paper-button" class="waves-effect waves-light btn orange darken-3">Paper <i class="fas fa-hand-paper"></i></a></div>
+        <div class="col"><a id="scissors-button" class="waves-effect waves-light btn orange darken-2">Scissors <i class="fas fa-hand-scissors"></i></a></div>
+        <div class="col"><a id="lizard-button" class="waves-effect waves-light btn orange darken-1">Lizard <i class="fas fa-hand-lizard"></i></a></div>
+        <div class="col"><a id="spock-button" class="waves-effect waves-light btn orange">Spock <i class="fas fa-hand-spock"></i></a></div>
       </div>
-      <div class="results row">
-        <div id="results"></div>
+      <div class="notification row">
+        <div id="notification-card"></div>
       </div>
       <div id="scoreboard" class="scoreboard row">
         <table>
@@ -58,7 +61,8 @@
     </main>
     <footer>
       <div class="row">
-        <small>Hand-coded by Nick Arnold with vanilla JavaScript. Styled with Materialize and Font Awesome.</small>
+        <p><small>Hand-coded by <a href="https://github.com/nicholasarnold" title="Nick Arnold's GitHub"><i class="fab fa-github"></i> Nick Arnold</a> with vanilla JavaScript. Styled with <a href="https://materializecss.com/" title="Materialize CSS Framework">Materialize</a> and <a href="https://fontawesome.com/" title="Font Awesome Vector Icons">Font Awesome</a>.</small></p>
+        <p><small><a href="http://www.samkass.com/theories/RPSSL.html" target="_blank">Rock Paper Scissors Lizard Spock</a> by Sam Kass and Karen Bryla is licensed under a <a href="http://creativecommons.org/licenses/by-nc/3.0/" target="_blank">Creative Commons Attribution-NonCommercial 3.0 Unported License</a>.</small></p>
       </div>
     </footer>
   </div>
